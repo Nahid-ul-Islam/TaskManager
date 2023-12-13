@@ -31,7 +31,7 @@ export const tasksAPI: any = createApi({
             invalidatesTags: ["Task"],
         }),
         deleteTask: builder.mutation({
-            query: ({ id, updateDoc }) => ({
+            query: ( id ) => ({
                 url: `my-notes/${id}`,
                 method: "DELETE",
             }),
@@ -40,4 +40,7 @@ export const tasksAPI: any = createApi({
     }),
 });
 
-export const { useGetTasksByEmailQuery } = tasksAPI;
+export const { 
+    useGetTasksByEmailQuery,
+    useDeleteTaskMutation,
+} = tasksAPI;

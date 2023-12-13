@@ -6,7 +6,7 @@ import auth from '../../../firebase.init';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Titlebar from '../components/titlebar/titlebar';
-import { useGetTasksByEmailQuery } from '@/redux/slice/api';
+import { useDeleteTaskMutation, useGetTasksByEmailQuery } from '@/redux/slice/api';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Loading from '../components/loading/loading';
 import Link from 'next/link';
@@ -15,31 +15,23 @@ const Tasks = () => {
     const [user] = useAuthState
         (auth);
     const dispatch = useAppDispatch();
-    // const tasksData = useSelector((state) => state.notesReducer);
     const { data: tasksData } = useGetTasksByEmailQuery(user ? user.email : "");
     const searchData = useAppSelector((state) => state.searchReducer.value);
-    console.log(tasksData)
-    console.log(user)
-    // console.log(tasksData);
-    // const { isLoading, notes, error } = tasksData;
     const isLoading = (tasksData == null)
     const notes = tasksData;
     const error = null;
 
+    const [deleteTask, {isSuccess}] = useDeleteTaskMutation();
 
-    const handleDelete = async (id, email) => {
+    const handleDelete = async (id:string, email:string) => {
         if (window.confirm("Are you sure you want to delete!!")) {
-            // dispatch(loadNotes(user.email));
-
+            deleteTask(id);
+            console.log(id);
+            
         }
     };
 
-    // useEffect(() => {
-    //     dispatch(loadNotes(user.email));
-    // }, []);
-
     const pageTitle = `Welcome ${user ? user.displayName : ''}`;
-    // return (<div></div>)
 
     return (
         <div>
