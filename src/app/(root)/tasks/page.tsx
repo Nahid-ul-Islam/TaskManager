@@ -1,10 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import Titlebar from '../components/titlebar/titlebar';
 import { useDeleteTaskMutation, useGetTasksByEmailQuery } from '@/redux/slice/api';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -12,8 +9,7 @@ import Loading from '../components/loading/loading';
 import Link from 'next/link';
 
 const Tasks = () => {
-    const [user] = useAuthState
-        (auth);
+    const [user] = useAuthState(auth);
     const dispatch = useAppDispatch();
     const { data: tasksData } = useGetTasksByEmailQuery(user ? user.email : "");
     const searchData = useAppSelector((state) => state.searchReducer.value);
@@ -21,13 +17,13 @@ const Tasks = () => {
     const notes = tasksData;
     const error = null;
 
-    const [deleteTask, {isSuccess}] = useDeleteTaskMutation();
+    const [deleteTask, { isSuccess }] = useDeleteTaskMutation();
 
-    const handleDelete = async (id:string, email:string) => {
+    const handleDelete = async (id: string, email: string) => {
         if (window.confirm("Are you sure you want to delete!!")) {
             deleteTask(id);
             console.log(id);
-            
+
         }
     };
 

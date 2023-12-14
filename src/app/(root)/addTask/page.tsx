@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { addNote, loadNotes } from '../../app/features/notes/notesSlice';
 import auth from '../../../firebase.init';
 import Titlebar from '../components/titlebar/titlebar';
 import { useRouter } from 'next/navigation';
