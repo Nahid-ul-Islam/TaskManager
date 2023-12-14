@@ -43,4 +43,5 @@ export const tasksAPI: any = createApi({
 export const { 
     useGetTasksByEmailQuery,
     useDeleteTaskMutation,
+    useCreateTaskMutation,
 } = tasksAPI;

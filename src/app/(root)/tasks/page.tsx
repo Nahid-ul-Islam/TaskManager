@@ -36,8 +36,8 @@ const Tasks = () => {
     return (
         <div>
             <Titlebar title={pageTitle}>
-                <Link href='/add-note'>
-                    <button className="px-2 py-2 rounded-md my-4 bg-green-500 hover:bg-green-700 font-semibold text-sm md:text-base text-white">Create New Note</button>
+                <Link href='/addTask'>
+                    <button className="px-2 py-2 rounded-md my-4 bg-green-500 hover:bg-green-700 font-semibold text-sm md:text-base text-white">Create New Task</button>
                 </Link>
                 {isLoading && <Loading></Loading>}
                 {error && <p className='text-red-500'>{error}</p>}
